@@ -1379,13 +1379,14 @@ static int const RCTVideoUnset = -1;
 
 - (void)videoPlayerViewControllerWillDismiss:(AVPlayerViewController *)playerViewController
 {
-  if (_playerViewController == playerViewController && _fullscreenPlayerPresented && self.onVideoFullscreenPlayerWillDismiss)
+  if (true)
   {
     @try{
       [_playerViewController.contentOverlayView removeObserver:self forKeyPath:@"frame"];
       [_playerViewController removeObserver:self forKeyPath:readyForDisplayKeyPath];
     }@catch(id anException){
     }
+    [self removeFromSuperview];
     self.onVideoFullscreenPlayerWillDismiss(@{@"target": self.reactTag});
   }
 }
